@@ -13,9 +13,11 @@ import {
 
 const BASE_URL = "https://connections-api.herokuapp.com";
 
-const addNewContacts = (contact) => async (dispatch) => {
+const addNewContacts = (contact) => async (dispatch, getState) => {
+  const token = getState().auth.token;
   dispatch(addNewContactsRequest());
   try {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
     const { data } = await axios.post(`${BASE_URL}/contacts`, contact);
     dispatch(addNewContactsSuccess(data));
   } catch (error) {
@@ -23,9 +25,11 @@ const addNewContacts = (contact) => async (dispatch) => {
   }
 };
 
-const getAllContacts = () => async (dispatch) => {
+const getAllContacts = () => async (dispatch, getState) => {
+  const token = getState().auth.token;
   dispatch(getAllContactsRequest());
   try {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
     const { data } = await axios.get(`${BASE_URL}/contacts`);
     dispatch(getAllContactsSuccess(data));
   } catch (error) {
@@ -33,9 +37,11 @@ const getAllContacts = () => async (dispatch) => {
   }
 };
 
-const removeContacts = (id) => async (dispatch) => {
+const removeContacts = (id) => async (dispatch, getState) => {
+  const token = getState().auth.token;
   dispatch(removeContactsRequest());
   try {
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
     await axios.delete(`${BASE_URL}/contacts/${id}`);
     dispatch(removeContactsSuccess(id));
   } catch (error) {
