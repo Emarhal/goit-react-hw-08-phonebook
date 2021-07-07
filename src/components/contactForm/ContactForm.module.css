@@ -1,0 +1,25 @@
+.formMain {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 15px;
+  margin: 15px;
+  width: 400px;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  font-size: 20px;
+}
+
+.formInput {
+  margin-top: 10px;
+  padding: 3px;
+}
+
+.formBtn {
+  margin-top: 15px;
+  width: 100px;
+}
